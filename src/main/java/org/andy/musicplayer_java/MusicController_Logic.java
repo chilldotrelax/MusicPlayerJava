@@ -1,19 +1,107 @@
 package org.andy.musicplayer_java;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
+import java.util.List;
+import java.io.File;
 
-public class HelloController {
+
+public class MusicController_Logic {
+    FileChooser fil_chooser = new FileChooser();
+    File_Import_Manager grab_file = new File_Import_Manager();
+    PlayMusic playMusic = null;
+    MusicList_Controller updateCurrList = new MusicList_Controller();
+
+    @FXML
+    private Button PlayButton;
+
+    @FXML
+    private Button StopButton;
+
     @FXML
     private Label nowPlayingLabel;
 
     @FXML
-    private void 
+    public ListView<String> musicListView;
 
+    String currentSongPlaying;
 
+    @FXML
 
+    private void senseEvent(){
+        currentSongPlaying = musicListView.getSelectionModel().getSelectedItem();
 
+        playMusic = new PlayMusic("src/Songs"+currentSongPlaying);
 
+    }
 
+    //Controls button Logic
+    @FXML
+    private void playButtonClick(){
+        PlayButton.setDisable(true);
+        playMusic.playSound();
+        nowPlayingLabel.setText("Playing: "+ musicListView.getSelectionModel().getSelectedItem());
+    }
+    @FXML
+    private void stopButtonClick(){
+        PlayButton.setDisable(false);
+        playMusic.pauseSound();
+        StopButton.setDisable(true);
+    }
+    @FXML
+    private void loopButtonClick(){
+        System.out.println("Placeholder.");
+    }
 
+    //Menu Items Logic
+    @FXML
+    private void importMusicFromFile_OnEvent() {
+        Window owner = nowPlayingLabel.getScene().getWindow();
+        fil_chooser.setTitle("Select MP3 File");
+        File music_file_choice = fil_chooser.showOpenDialog(owner);
+
+        if (music_file_choice != null && music_file_choice.exists() && music_file_choice.isFile()){
+            String path = music_file_choice.getAbsolutePath();
+            grab_file.openFromFile(path);
+            musicListView.setItems(updateCurrList.updateList());
+        }
+        else{
+            System.out.println("Error: No file chosen or invalid file type!");
+        }
+    }
+    @FXML
+    private void importMusicFromFolder_OnEvent(){
+        Window owner = nowPlayingLabel.getScene().getWindow();
+        fil_chooser.setTitle("Select Multiple MP3 Files");
+        List<File> music_from_folder_choice = fil_chooser.showOpenMultipleDialog(owner);
+
+        if (music_from_folder_choice != null){
+            grab_file.openFromFolder(music_from_folder_choice);
+            musicListView.setItems(updateCurrList.updateList());
+        }
+        else{
+            System.out.println("Error: No file chosen or invalid file type!");
+        }
+
+    }
+    //TODO: Implement later.
+    @FXML
+    private void appPreferences_OnEvent(){
+        //Window owner = nowPlayingLabel.getScene().getWindow();
+
+    }
+    @FXML
+    private void quitApp_OnEvent(){
+        //Window owner = nowPlayingLabel.getScene().getWindow();
+
+    }
+    @FXML
+    private void aboutApp_OnEvent(){
+        //Window owner = nowPlayingLabel.getScene().getWindow();
+
+    }
 }

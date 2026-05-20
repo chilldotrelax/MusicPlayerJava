@@ -1,0 +1,130 @@
+.root-pane {
+    -fx-background-color: #111318;
+    -fx-font-family: "Inter", "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+.menu-bar {
+    -fx-background-color: #171a21;
+}
+
+.menu-bar .label {
+    -fx-text-fill: #e6e6e6;
+}
+
+.main-content {
+    -fx-background-color: #111318;
+}
+
+.player-card,
+.library-card {
+    -fx-background-color: #1a1d25;
+    -fx-background-radius: 22;
+    -fx-padding: 22;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 24, 0.25, 0, 8);
+}
+
+.album-art {
+    -fx-background-color: linear-gradient(to bottom right, #2a2f3a, #151820);
+    -fx-background-radius: 20;
+    -fx-border-color: #343a46;
+    -fx-border-radius: 20;
+    -fx-border-width: 1;
+}
+
+.album-icon {
+    -fx-font-size: 72px;
+    -fx-text-fill: #8f9bb3;
+}
+
+.song-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f2f4f8;
+}
+
+.song-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8f9bb3;
+}
+
+.section-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f2f4f8;
+}
+
+.progress-bar {
+    -fx-accent: #7c5cff;
+}
+
+.progress-bar .track {
+    -fx-background-color: #2b303b;
+    -fx-background-radius: 999;
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 999;
+}
+
+.button-row {
+    -fx-alignment: center;
+}
+
+.button {
+    -fx-background-radius: 999;
+    -fx-padding: 10 22 10 22;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.primary-button {
+    -fx-background-color: #7c5cff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.primary-button:hover {
+    -fx-background-color: #9278ff;
+}
+
+.secondary-button {
+    -fx-background-color: #2b303b;
+    -fx-text-fill: #e6e6e6;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #3a4150;
+}
+
+.music-list {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.music-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d8dbe3;
+    -fx-font-size: 15px;
+    -fx-padding: 14 16 14 16;
+    -fx-background-radius: 14;
+}
+
+.music-list .list-cell:hover {
+    -fx-background-color: #252a35;
+}
+
+.music-list .list-cell:selected {
+    -fx-background-color: #7c5cff;
+    -fx-text-fill: white;
+}
+
+.music-list .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.music-list .scroll-bar:vertical .thumb {
+    -fx-background-color: #3a4150;
+    -fx-background-radius: 999;
+}

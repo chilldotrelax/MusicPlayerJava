@@ -1,16 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.andy.musicplayer_java.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane fx:controller="org.andy.musicplayer_java.MusicController_Logic"
+            prefHeight="520.0" prefWidth="860.0"
+            stylesheets="@music-player.css"
+            styleClass="root-pane"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <top>
+        <MenuBar styleClass="menu-bar">
+            <menus>
+                <Menu mnemonicParsing="false" text="Music">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Import from file"  onAction="#importMusicFromFile_OnEvent"/>
+                        <MenuItem mnemonicParsing="false" text="Import from folder" onAction="#importMusicFromFolder_OnEvent"/>
+                        <MenuItem mnemonicParsing="false" text="Preferences…" onAction="#appPreferences_OnEvent"/>
+                        <MenuItem mnemonicParsing="false" text="Quit" onAction="#quitApp_OnEvent" />
+                    </items>
+                </Menu>
+
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" onAction="#aboutApp_OnEvent"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox spacing="24.0" styleClass="main-content">
+            <padding>
+                <Insets top="24" right="24" bottom="24" left="24" />
+            </padding>
+
+            <!-- Left player card -->
+            <VBox  spacing="18.0" styleClass="player-card" prefWidth="330.0">
+                <StackPane styleClass="album-art" prefHeight="260.0">
+                    <Label text="♪" styleClass="album-icon" />
+                </StackPane>
+
+                <VBox spacing="6.0">
+                    <Label fx:id="nowPlayingLabel" text="Nothing Playing" styleClass="song-title" />
+                    <Label text="Ready to play" styleClass="song-subtitle" />
+                </VBox>
+
+                <ProgressBar fx:id="songProgressBar" progress="0.0" maxWidth="Infinity" />
+
+                <HBox spacing="12.0" styleClass="button-row">
+                    <Button  fx:id="PlayButton" text="Play" disable="true" styleClass="primary-button" onAction="#playButtonClick"/>
+                    <Button fx:id="StopButton" text="Stop" disable="true" styleClass="secondary-button" onAction ="#stopButtonClick"/>
+                    <Button fx:id="LoopButton" text="Loop" styleClass="secondary-button" onAction ="#loopButtonClick"/>
+                </HBox>
+            </VBox>
+
+            <!-- Right music list card -->
+            <VBox spacing="14.0" styleClass="library-card" HBox.hgrow="ALWAYS">
+                <Label text="Available Music" styleClass="section-title" />
+
+                <ListView fx:id="musicListView"
+                          styleClass="music-list"
+                          HBox.hgrow="ALWAYS"
+                          VBox.vgrow="ALWAYS"
+                          onMouseClicked="#senseEvent"/>
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

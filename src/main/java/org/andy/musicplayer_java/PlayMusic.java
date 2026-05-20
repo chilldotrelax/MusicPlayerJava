@@ -8,32 +8,33 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PlayMusic {
-    Path pathsong;
+    Path path_song;
     URI uri;
+    String resolved_Path;
+    Media songAsMedia = null;
+    MediaPlayer playMedia = null;
 
     public PlayMusic(String CS){
-        this.pathsong = Paths.get(CS);
-        this.uri = pathsong.toUri();
+        this.path_song = Paths.get(CS);
+        this.uri = path_song.toUri();
         this.resolved_Path = uri.toString();
+
+        create_Obj(this.resolved_Path);
     }
 
-    private String resolved_Path;
-    //TODO Address the null resolved_path.
-    Media songAsMedia = new Media(resolved_Path);
-
-    MediaPlayer playMedia = new MediaPlayer(songAsMedia);
-
+    private void create_Obj(String resolved_Path){
+        songAsMedia = new Media(resolved_Path);
+        playMedia = new MediaPlayer(songAsMedia);
+    }
     public void playSound(){
-
         playMedia.play();
     }
 
     public void pauseSound(){
-
         playMedia.stop();
     }
 
     public void loopSound(){
-        //TODO
+        playMedia.setCycleCount(MediaPlayer.INDEFINITE);
     }
 }

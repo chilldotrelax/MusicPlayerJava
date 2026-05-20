@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class TopLevel_Scene extends Application {
@@ -17,6 +16,8 @@ public class TopLevel_Scene extends Application {
         stage.setScene(scene);
         stage.show();
 
+        MusicController_Logic startup = fxmlLoader.getController();
+        startup.initialize();
 
     }
 }

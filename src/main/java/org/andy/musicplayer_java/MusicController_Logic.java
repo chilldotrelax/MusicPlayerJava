@@ -9,7 +9,6 @@ import javafx.stage.Window;
 import java.util.List;
 import java.io.File;
 
-
 public class MusicController_Logic {
     FileChooser fil_chooser = new FileChooser();
     File_Import_Manager grab_file = new File_Import_Manager();
@@ -25,24 +24,36 @@ public class MusicController_Logic {
     @FXML
     private Label nowPlayingLabel;
 
-    @FXML
-    public ListView<String> musicListView;
-
-    String currentSongPlaying;
+    @FXML //Static field.
+    private ListView<String> musicListView;
 
     @FXML
+    public void initialize(){
+        musicListView.setItems(updateCurrList.updateList());
+    }
 
+    private String currentSongPlaying;
+
+    @FXML
     private void senseEvent(){
         currentSongPlaying = musicListView.getSelectionModel().getSelectedItem();
-
-        playMusic = new PlayMusic("src/Songs"+currentSongPlaying);
-
+        if (playMusic == null){
+            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying);
+        }
+        else if (currentSongPlaying != null){
+            PlayButton.setDisable(true);
+            playMusic = null;
+            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying);
+        }
+        PlayButton.setDisable(false);
+        nowPlayingLabel.setText(currentSongPlaying);
     }
 
     //Controls button Logic
     @FXML
     private void playButtonClick(){
         PlayButton.setDisable(true);
+        StopButton.setDisable(false);
         playMusic.playSound();
         nowPlayingLabel.setText("Playing: "+ musicListView.getSelectionModel().getSelectedItem());
     }
@@ -54,7 +65,7 @@ public class MusicController_Logic {
     }
     @FXML
     private void loopButtonClick(){
-        System.out.println("Placeholder.");
+        playMusic.loopSound();
     }
 
     //Menu Items Logic
@@ -88,6 +99,7 @@ public class MusicController_Logic {
         }
 
     }
+
     //TODO: Implement later.
     @FXML
     private void appPreferences_OnEvent(){
@@ -96,6 +108,7 @@ public class MusicController_Logic {
     }
     @FXML
     private void quitApp_OnEvent(){
+        System.exit(0); //Temp function. Will fix some things later.
         //Window owner = nowPlayingLabel.getScene().getWindow();
 
     }

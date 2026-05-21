@@ -15,6 +15,9 @@ public class File_Import_Manager {
 
     public void openFromFile(String path) {
         Path src = Paths.get(path);
+        //TODO Get rid of the hardcoded directory.
+        //TODO Handle duplicate files. Hardcode an MP3 only import.
+        //TODO Future: Be able to convert files using FFMPEG.
         Path dest = Paths.get("/Users/andyhuang/IdeaProjects/MusicPlayer_Java/src/Songs");
         Path target = dest.resolve(src.getFileName());
         try {
@@ -25,6 +28,7 @@ public class File_Import_Manager {
     }
 
     public void openFromFolder (List < File > grab_folder_files_from_import) {
+        //TODO Get rid of the hardcoded directory.
         Path dest = Paths.get("/Users/andyhuang/IdeaProjects/MusicPlayer_Java/src/Songs");
         for (File individual_song : grab_folder_files_from_import) {
             songPath_Multi.add(individual_song.getAbsolutePath());

@@ -119,8 +119,7 @@ public class MusicController_Logic {
     }
     @FXML
     private void quitApp_OnEvent(){
-        System.exit(0); //Temp function. Will fix some things later.
-        //Window owner = nowPlayingLabel.getScene().getWindow();
+        System.exit(0); //Okay implementation. Perhaps a cleaner way to implement this?
 
     }
     @FXML

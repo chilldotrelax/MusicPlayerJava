@@ -1,5 +1,6 @@
 {
   "Current theme": "Dark",
-  "rememberLastVolumeLevel": false
+  "rememberLastVolumeLevel": false,
+  "enableExperimentalAutoConversionofFile": false
 }
 

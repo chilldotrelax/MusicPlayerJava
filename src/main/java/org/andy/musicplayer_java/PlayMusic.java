@@ -19,6 +19,7 @@ public class PlayMusic {
         this.uri = path_song.toUri();
         this.resolved_Path = uri.toString();
 
+        //Careful.
         create_Obj(this.resolved_Path);
     }
 

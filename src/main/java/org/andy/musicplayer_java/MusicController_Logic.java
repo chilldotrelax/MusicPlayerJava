@@ -1,11 +1,14 @@
 package org.andy.musicplayer_java;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.stage.FileChooser;
-import javafx.stage.Window;
+import javafx.stage.*;
+
+import java.io.IOException;
 import java.util.List;
 import java.io.File;
 
@@ -31,6 +34,13 @@ public class MusicController_Logic {
     public void initialize(){
         musicListView.setItems(updateCurrList.updateList());
     }
+
+    @FXML
+    private Parent aboutWindowPopup = null;
+
+    @FXML
+    private Parent preferencesWindowPopup = null;
+
 
     private String currentSongPlaying;
 
@@ -100,10 +110,11 @@ public class MusicController_Logic {
 
     }
 
-    //TODO: Implement later.
     @FXML
     private void appPreferences_OnEvent(){
-        //Window owner = nowPlayingLabel.getScene().getWindow();
+        if (preferencesWindowPopup == null){
+            //FXMLLoader = new FXMLLoader(getClass().getResource())
+        }
 
     }
     @FXML
@@ -113,8 +124,18 @@ public class MusicController_Logic {
 
     }
     @FXML
-    private void aboutApp_OnEvent(){
-        //Window owner = nowPlayingLabel.getScene().getWindow();
+    private void aboutApp_OnEvent() throws IOException {
+        if (aboutWindowPopup == null){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("About-Menu.fxml"));
+
+            aboutWindowPopup = loader.load();
+
+            AboutPopUpWindow initializeAboutWindow = new AboutPopUpWindow(aboutWindowPopup);
+            initializeAboutWindow.initializePopup();
+
+        }
+        aboutWindowPopup = null;
+
 
     }
 }

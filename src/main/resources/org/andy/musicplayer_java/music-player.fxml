@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="520.0" prefWidth="860.0" styleClass="root-pane" stylesheets="@music-player.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.MusicController_Logic">
+
+    <top>
+        <MenuBar styleClass="menu-bar">
+            <menus>
+                <Menu mnemonicParsing="false" text="Music">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFile_OnEvent" text="Import from file" />
+                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFolder_OnEvent" text="Import from folder" />
+                        <MenuItem mnemonicParsing="false" onAction="#appPreferences_OnEvent" text="Preferences…" />
+                        <MenuItem mnemonicParsing="false" onAction="#quitApp_OnEvent" text="Quit" />
+                    </items>
+                </Menu>
+
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#aboutApp_OnEvent" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <center>
+        <HBox spacing="24.0" styleClass="main-content">
+            <padding>
+                <Insets bottom="24" left="24" right="24" top="24" />
+            </padding>
+
+            <!-- Left player card -->
+            <VBox prefWidth="330.0" spacing="18.0" styleClass="player-card">
+                <StackPane prefHeight="260.0" styleClass="album-art">
+                    <Label styleClass="album-icon" text="♪" />
+                </StackPane>
+
+                <VBox spacing="6.0">
+                    <Label fx:id="nowPlayingLabel" styleClass="song-title" text="Nothing Playing" />
+                    <Label styleClass="song-subtitle" text="Ready to play" />
+                </VBox>
+
+                <ProgressBar fx:id="songProgressBar" maxWidth="Infinity" progress="0.0" />
+
+                <HBox spacing="12.0" styleClass="button-row">
+                    <Button fx:id="PlayButton" disable="true" onAction="#playButtonClick" styleClass="primary-button" text="Play" />
+                    <Button fx:id="StopButton" disable="true" onAction="#stopButtonClick" styleClass="secondary-button" text="Stop" />
+                    <Button fx:id="LoopButton" onAction="#loopButtonClick" styleClass="secondary-button" text="Loop" />
+                </HBox>
+
+            </VBox>
+
+            <!-- Right music list card -->
+            <VBox spacing="14.0" styleClass="library-card" HBox.hgrow="ALWAYS">
+                <Label styleClass="section-title" text="Available Music" />
+
+                <ListView fx:id="musicListView" onMouseClicked="#senseEvent" styleClass="music-list" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>

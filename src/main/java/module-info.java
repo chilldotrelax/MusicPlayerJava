@@ -12,4 +12,6 @@ module org.andy.musicplayer_java {
 
     opens org.andy.musicplayer_java to javafx.fxml;
     exports org.andy.musicplayer_java;
+    exports org.andy.musicplayer_java.popup_controllers;
+    opens org.andy.musicplayer_java.popup_controllers to javafx.fxml;
 }

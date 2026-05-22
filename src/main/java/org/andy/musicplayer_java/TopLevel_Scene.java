@@ -23,6 +23,8 @@ public class TopLevel_Scene extends Application {
         stage.show();
 
         //Make sure to not directly instantiate startup w/ new MusicController(). FXML will not be injected.
+
+        //To do: Make sure to add protection for empty "songs" folder.
         MusicController_Logic startup = fxmlLoader.getController();
         startup.initialize();
 

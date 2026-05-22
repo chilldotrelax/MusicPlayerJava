@@ -6,8 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.stage.*;
-
+import org.andy.musicplayer_java.popup_controllers.PreferencesPopUpWindow;
 import java.io.IOException;
 import java.util.List;
 import java.io.File;
@@ -41,6 +42,9 @@ public class MusicController_Logic {
     @FXML
     private Parent preferencesWindowPopup = null;
 
+    @FXML
+    private ProgressBar songProgressBar;
+
 
     private String currentSongPlaying;
 
@@ -64,13 +68,13 @@ public class MusicController_Logic {
     private void playButtonClick(){
         PlayButton.setDisable(true);
         StopButton.setDisable(false);
-        playMusic.playSound();
+        playMusic.playSound(songProgressBar);
         nowPlayingLabel.setText("Playing: "+ musicListView.getSelectionModel().getSelectedItem());
     }
     @FXML
     private void stopButtonClick(){
         PlayButton.setDisable(false);
-        playMusic.pauseSound();
+        playMusic.pauseSound(songProgressBar);
         StopButton.setDisable(true);
     }
     @FXML
@@ -109,17 +113,22 @@ public class MusicController_Logic {
         }
 
     }
-
     @FXML
-    private void appPreferences_OnEvent(){
+    private void appPreferences_OnEvent() throws IOException {
         if (preferencesWindowPopup == null){
-            //FXMLLoader = new FXMLLoader(getClass().getResource())
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("preferences-menu.fxml"));
+
+            preferencesWindowPopup = loader.load();
+
+            PreferencesPopUpWindow initializePrefWindow = new PreferencesPopUpWindow(preferencesWindowPopup);
+            initializePrefWindow.initializePreferencesPopup();
         }
+        preferencesWindowPopup = null;
 
     }
     @FXML
     private void quitApp_OnEvent(){
-        System.exit(0); //Okay implementation. Perhaps a cleaner way to implement this?
+        System.exit(0);
 
     }
     @FXML

@@ -14,13 +14,7 @@ Anyway, It's still a heavily WIP project, and hopefully I'll finish in the weeks
 2. Maven, or perhaps utilise the inbuilt Maven wrapper.
 
 #### How to launch the "app" if it is finally in the released state.
-From the project root, run:
->For bash:  
->./mvnw clean javafx:run
-
->On Windows:
->
-> mvnw.cmd clean javafx:run
+Don't build yet -- incomplete.
 
 ****
 ### License

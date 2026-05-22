@@ -10,33 +10,26 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0" prefWidth="479.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <HBox layoutX="8.0" layoutY="51.0" prefHeight="335.0" prefWidth="269.0">
-            <children>
-                <VBox prefHeight="335.0" prefWidth="142.0" spacing="100.0">
-                    <children>
-                        <Label prefHeight="24.0" prefWidth="144.0" text="Light Mode" />
-                        <Label prefHeight="7.0" prefWidth="138.0" text="Remember Last Song" />
-                        <Label prefHeight="17.0" prefWidth="140.0" text="Auto Convert Format" />
-                    </children>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" />
-                        <CheckBox mnemonicParsing="false" translateY="100.0" />
-                        <CheckBox layoutX="10.0" layoutY="35.0" mnemonicParsing="false" translateY="200.0" />
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-        <Label disable="true" layoutX="8.0" layoutY="14.0" prefHeight="0.0" prefWidth="585.0" text="Preferences" textAlignment="CENTER">
-            <font>
-                <Font size="22.0" />
-            </font>
-        </Label>
-        <ImageView fitHeight="394.0" fitWidth="229.0" layoutX="263.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="src/resources//Assets/pref_art.png"/>
-        </ImageView>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0"
+            prefWidth="479.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.PreferencesController_Logic" >
+    <HBox layoutX="8.0" layoutY="51.0" prefHeight="335.0" prefWidth="269.0">
+        <VBox prefHeight="335.0" prefWidth="142.0" spacing="100.0">
+            <Label prefHeight="24.0" prefWidth="144.0" text="Light Mode"/>
+            <Label prefHeight="7.0" prefWidth="138.0" text="Remember Last Song"/>
+            <Label prefHeight="17.0" prefWidth="140.0" text="Auto Convert Format"/>
+        </VBox>
+        <VBox prefHeight="200.0" prefWidth="100.0">
+            <CheckBox fx:id="appearanceButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" onAction="#colorScheme_OnEvent" />
+            <CheckBox fx:id="lastSongMemory" mnemonicParsing="false" translateY="100.0" onAction="#saveLastMusic_OnEvent"/>
+            <CheckBox fx:id="exp_autoFormatConversion" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" translateY="200.0" onAction="#convertFormat_OnEvent"/>
+        </VBox>
+    </HBox>
+    <Label disable="true" layoutX="8.0" layoutY="14.0" prefHeight="0.0" prefWidth="585.0" text="Preferences"
+           textAlignment="CENTER">
+        <font>
+            <Font size="22.0"/>
+        </font>
+    </Label>
+    <ImageView fitHeight="394.0" fitWidth="229.0" layoutX="263.0" pickOnBounds="true" preserveRatio="true">
+    </ImageView>
 </AnchorPane>

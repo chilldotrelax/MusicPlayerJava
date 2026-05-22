@@ -14,4 +14,10 @@ module org.andy.musicplayer_java {
     exports org.andy.musicplayer_java;
     exports org.andy.musicplayer_java.popup_controllers;
     opens org.andy.musicplayer_java.popup_controllers to javafx.fxml;
+    exports org.andy.musicplayer_java.background_tasks;
+    opens org.andy.musicplayer_java.background_tasks to javafx.fxml;
+    exports org.andy.musicplayer_java.musicplayer_toplevel;
+    opens org.andy.musicplayer_java.musicplayer_toplevel to javafx.fxml;
+    exports org.andy.musicplayer_java.controllers;
+    opens org.andy.musicplayer_java.controllers to javafx.fxml;
 }

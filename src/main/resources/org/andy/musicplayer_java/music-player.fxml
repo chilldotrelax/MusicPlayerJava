@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="520.0" prefWidth="860.0" styleClass="root-pane" stylesheets="@music-player.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.MusicController_Logic">
+<BorderPane prefHeight="520.0" prefWidth="860.0" styleClass="root-pane" stylesheets="@music-player.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.MusicController_Logic">
 
     <top>
         <MenuBar styleClass="menu-bar">

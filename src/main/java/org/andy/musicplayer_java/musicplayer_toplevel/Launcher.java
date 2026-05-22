@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java;
+package org.andy.musicplayer_java.musicplayer_toplevel;
 
 import javafx.application.Application;
 

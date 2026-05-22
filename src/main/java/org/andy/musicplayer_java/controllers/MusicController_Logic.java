@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java;
+package org.andy.musicplayer_java.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.stage.*;
+import org.andy.musicplayer_java.popup_controllers.AboutPopUpWindow;
+import org.andy.musicplayer_java.background_tasks.File_Import_Manager;
+import org.andy.musicplayer_java.background_tasks.MusicList_Controller;
+import org.andy.musicplayer_java.PlayMusic;
 import org.andy.musicplayer_java.popup_controllers.PreferencesPopUpWindow;
 import java.io.IOException;
 import java.util.List;
@@ -57,6 +61,8 @@ public class MusicController_Logic {
         else if (currentSongPlaying != null){
             PlayButton.setDisable(true);
             playMusic = null;
+            //TODO Kill the previous thread that was running to avoid throwing an exception.
+            songProgressBar.setProgress(Double.MIN_VALUE);
             playMusic = new PlayMusic("src/Songs/"+currentSongPlaying);
         }
         PlayButton.setDisable(false);
@@ -116,7 +122,7 @@ public class MusicController_Logic {
     @FXML
     private void appPreferences_OnEvent() throws IOException {
         if (preferencesWindowPopup == null){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("preferences-menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/andy/musicplayer_java/preferences-menu.fxml"));
 
             preferencesWindowPopup = loader.load();
 
@@ -134,10 +140,8 @@ public class MusicController_Logic {
     @FXML
     private void aboutApp_OnEvent() throws IOException {
         if (aboutWindowPopup == null){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("About-Menu.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/andy/musicplayer_java/About-Menu.fxml"));
             aboutWindowPopup = loader.load();
-
             AboutPopUpWindow initializeAboutWindow = new AboutPopUpWindow(aboutWindowPopup);
             initializeAboutWindow.initializePopup();
 

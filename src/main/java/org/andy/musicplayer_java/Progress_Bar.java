@@ -8,7 +8,7 @@ class Progress_Bar extends Thread{
     private final ProgressBar progressBar;
 
     Progress_Bar(Duration duration, ProgressBar progress_Bar){
-        this.getDuration = duration.toSeconds();
+        this.getDuration = duration.toMillis();
         this.progressBar = progress_Bar;
 
     }
@@ -16,12 +16,14 @@ class Progress_Bar extends Thread{
     public void run(){
         try {
             long startTime = (System.currentTimeMillis());
-            long songDurationasLong = Double.valueOf(this.getDuration).longValue();
-            long endTime = startTime + songDurationasLong;
+            long songDurationsLong = Double.valueOf(this.getDuration).longValue();
+            long endTime = startTime + songDurationsLong;
 
             while (System.currentTimeMillis() < endTime) {
-                double percentage = (1 - ((double) startTime) / ((double) endTime));
-                progressBar.setProgress(percentage);
+
+                double percentage = 1-(((((double) endTime /1000)-((double) System.currentTimeMillis() /1000)))/((this.getDuration)/1000));
+                //TODO Add delay to prevent excessive amounts of checks.
+                progressBar.setProgress(percentage); //TODO Suboptimal implementation -- Fix later.
             }
         }
         catch (Exception e){

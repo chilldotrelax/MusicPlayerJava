@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java;
+package org.andy.musicplayer_java.background_tasks;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

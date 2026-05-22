@@ -35,7 +35,6 @@ public class PlayMusic {
         if (playMedia.getCurrentTime().toSeconds() == 0) {
             progress = new Progress_Bar(playMedia.getTotalDuration(), passToProgress);
             progress.start();
-
         }
         else {
             progress = new Progress_Bar(playMedia.getCurrentTime(),passToProgress);
@@ -47,11 +46,12 @@ public class PlayMusic {
     }
 
     public void pauseSound(ProgressBar passToSelf){
+        //TODO Implement logic to temporarily supress thread.
+
         passToSelf.getProgress();
         playMedia.stop();
 
     }
-
     public void loopSound(){
         playMedia.setCycleCount(MediaPlayer.INDEFINITE);
     }

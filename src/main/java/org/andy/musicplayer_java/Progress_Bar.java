@@ -1,17 +1,19 @@
 package org.andy.musicplayer_java;
-
+import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
+import java.time.*;
 
 class Progress_Bar extends Thread{
     private final double getDuration;
-    private final ProgressBar progressBar;
-
-    Progress_Bar(Duration duration, ProgressBar progress_Bar){
+    private ProgressBar progBar;
+    private double offset;
+    Progress_Bar(Duration duration, ProgressBar progBar, double Offset){
         this.getDuration = duration.toMillis();
-        this.progressBar = progress_Bar;
-
+        this.progBar = progBar;
+        this.offset = Offset;
     }
+
     @Override
     public void run(){
         try {
@@ -20,14 +22,18 @@ class Progress_Bar extends Thread{
             long endTime = startTime + songDurationsLong;
 
             while (System.currentTimeMillis() < endTime) {
-
                 double percentage = 1-(((((double) endTime /1000)-((double) System.currentTimeMillis() /1000)))/((this.getDuration)/1000));
-                //TODO Add delay to prevent excessive amounts of checks.
-                progressBar.setProgress(percentage); //TODO Suboptimal implementation -- Fix later.
+                sleep(200);
+                Platform.runLater(()->{
+                    this.progBar.setProgress(offset + percentage);
+                });
             }
         }
         catch (Exception e){
-            System.out.println("Exception!");
+            System.out.println("Something went wrong!");
+
         }
     }
-}
+
+    }
+

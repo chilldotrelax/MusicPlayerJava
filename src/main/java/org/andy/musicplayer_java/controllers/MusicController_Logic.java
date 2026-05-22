@@ -25,30 +25,22 @@ public class MusicController_Logic {
 
     @FXML
     private Button PlayButton;
-
     @FXML
     private Button StopButton;
-
     @FXML
     private Label nowPlayingLabel;
-
-    @FXML //Static field.
+    @FXML
     private ListView<String> musicListView;
-
     @FXML
     public void initialize(){
         musicListView.setItems(updateCurrList.updateList());
     }
-
     @FXML
     private Parent aboutWindowPopup = null;
-
     @FXML
     private Parent preferencesWindowPopup = null;
-
     @FXML
     private ProgressBar songProgressBar;
-
 
     private String currentSongPlaying;
 
@@ -56,14 +48,14 @@ public class MusicController_Logic {
     private void senseEvent(){
         currentSongPlaying = musicListView.getSelectionModel().getSelectedItem();
         if (playMusic == null){
-            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying);
+            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying,songProgressBar);
         }
         else if (currentSongPlaying != null){
             PlayButton.setDisable(true);
             playMusic = null;
-            //TODO Kill the previous thread that was running to avoid throwing an exception.
-            songProgressBar.setProgress(Double.MIN_VALUE);
-            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying);
+            songProgressBar.setProgress(0);
+            stopButtonClick();
+            playMusic = new PlayMusic("src/Songs/"+currentSongPlaying,songProgressBar);
         }
         PlayButton.setDisable(false);
         nowPlayingLabel.setText(currentSongPlaying);
@@ -73,15 +65,15 @@ public class MusicController_Logic {
     @FXML
     private void playButtonClick(){
         PlayButton.setDisable(true);
-        StopButton.setDisable(false);
-        playMusic.playSound(songProgressBar);
+        playMusic.playSound();
         nowPlayingLabel.setText("Playing: "+ musicListView.getSelectionModel().getSelectedItem());
+        StopButton.setDisable(false);
     }
     @FXML
     private void stopButtonClick(){
-        PlayButton.setDisable(false);
-        playMusic.pauseSound(songProgressBar);
         StopButton.setDisable(true);
+        playMusic.pauseSound();
+        PlayButton.setDisable(false);
     }
     @FXML
     private void loopButtonClick(){
@@ -147,7 +139,5 @@ public class MusicController_Logic {
 
         }
         aboutWindowPopup = null;
-
-
     }
 }

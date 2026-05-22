@@ -5,11 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
-
 import javafx.scene.image.Image;
 import org.andy.musicplayer_java.controllers.MusicController_Logic;
 

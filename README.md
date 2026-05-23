@@ -2,11 +2,7 @@
 
 Music player built with Java and JavaFX.
 
-The goal is to ultimately ship something small that I can one day look back
-and say: "WOW! -- Why did I spend hours debugging a simple problem ?!?".
-
-Anyway, It's still a heavily WIP project, and hopefully I'll finish in the weeks to come.
-
+WIP. Incomplete project, do not clone or build just yet.
 
 ### Important things to note
 #### Requirements

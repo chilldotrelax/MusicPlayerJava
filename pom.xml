@@ -101,7 +101,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.andy.musicplayer_java/org.andy.musicplayer_java.musicplayer_toplevel.TopLevel_Scene</mainClass>
+                            <mainClass>org.andy.musicplayer_java/org.andy.musicplayer_java.toplevel.TopLevelScene</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

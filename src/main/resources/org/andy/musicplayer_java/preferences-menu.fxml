@@ -11,7 +11,7 @@
 
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="393.0"
-            prefWidth="479.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.PreferencesController_Logic" >
+            prefWidth="479.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.PreferencesControllerLogic" >
     <HBox layoutX="8.0" layoutY="51.0" prefHeight="335.0" prefWidth="269.0">
         <VBox prefHeight="335.0" prefWidth="142.0" spacing="100.0">
             <Label prefHeight="24.0" prefWidth="144.0" text="Light Mode"/>

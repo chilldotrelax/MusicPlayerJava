@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java.popup_controllers;
+package org.andy.musicplayer_java.popupcontrollers;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;

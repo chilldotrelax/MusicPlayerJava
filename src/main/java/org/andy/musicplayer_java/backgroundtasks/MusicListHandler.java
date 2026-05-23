@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java.background_tasks;
+package org.andy.musicplayer_java.backgroundtasks;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -9,7 +9,8 @@ import java.nio.file.Paths;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class MusicList_Controller {
+public class MusicListHandler {
+    //TODO Get rid of the hardcoded file path.
     Path path = Paths.get("/Users/andyhuang/IdeaProjects/MusicPlayer_Java/src/Songs");
 
     ObservableList<String> indexFiles = FXCollections.observableArrayList();
@@ -28,7 +29,6 @@ public class MusicList_Controller {
         } else {
             try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "*.mp3")) {
                 for (Path song_file : stream) {
-
                     indexFiles.add(String.valueOf(song_file.getFileName()));
                 }
             } catch (IOException e) {

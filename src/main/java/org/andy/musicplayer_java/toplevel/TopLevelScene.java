@@ -1,4 +1,4 @@
-package org.andy.musicplayer_java.musicplayer_toplevel;
+package org.andy.musicplayer_java.toplevel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +7,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 import javafx.scene.image.Image;
-import org.andy.musicplayer_java.controllers.MusicController_Logic;
+import org.andy.musicplayer_java.controllers.MusicControllerLogic;
 
-public class TopLevel_Scene extends Application {
+public class TopLevelScene extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -28,7 +28,7 @@ public class TopLevel_Scene extends Application {
         //Make sure to not directly instantiate startup w/ new MusicController(). FXML will not be injected.
 
         //To do: Make sure to add protection for empty "songs" folder.
-        MusicController_Logic startup = fxmlLoader.getController();
+        MusicControllerLogic startup = fxmlLoader.getController();
         startup.initialize();
 
     }

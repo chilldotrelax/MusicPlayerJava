@@ -1,30 +1,28 @@
 package org.andy.musicplayer_java;
 
-import javafx.application.Platform;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PlayMusic {
+public class MediaPlayerHandler {
     Path path_song;
     URI uri;
     String resolved_Path;
     Media songAsMedia = null;
     MediaPlayer playMedia = null;
-    Progress_Bar progressBar = null;
+    ProgressBarHandler progressBar = null;
 
-    private final ProgressBar progressBar_Constructor;
+    private final ProgressBar PROGRESSBARCONSTRUCTOR;
 
-    public PlayMusic(String CS, ProgressBar import_Prog){
+    public MediaPlayerHandler(String CS, ProgressBar import_Prog){
         this.path_song = Paths.get(CS);
         this.uri = path_song.toUri();
         this.resolved_Path = uri.toString();
-        this.progressBar_Constructor = import_Prog;
+        this.PROGRESSBARCONSTRUCTOR = import_Prog;
 
         create_Obj(this.resolved_Path);
     }
@@ -35,20 +33,19 @@ public class PlayMusic {
     public void playSound(){
         playMedia.play();
         if (progressBar == null){
-            progressBar = new Progress_Bar(playMedia.getTotalDuration(), this.progressBar_Constructor,0);
+            progressBar = new ProgressBarHandler(playMedia.getTotalDuration(),0,false, this.PROGRESSBARCONSTRUCTOR,0);
         }
         else {
             progressBar = null;
-            this.progressBar_Constructor.setDisable(false);
-            progressBar = new Progress_Bar(playMedia.getCurrentTime(), this.progressBar_Constructor,this.progressBar_Constructor.getProgress());
+            this.PROGRESSBARCONSTRUCTOR.setDisable(false);
+            progressBar = new ProgressBarHandler(playMedia.getTotalDuration(),playMedia.getCurrentTime().toMillis(),true, this.PROGRESSBARCONSTRUCTOR,this.PROGRESSBARCONSTRUCTOR.getProgress());
         }
         progressBar.start();
     }
     public void pauseSound(){
         playMedia.pause();
         progressBar.interrupt();
-
-        this.progressBar_Constructor.setDisable(true);
+        this.PROGRESSBARCONSTRUCTOR.setDisable(true);
     }
 
     public void loopSound(){

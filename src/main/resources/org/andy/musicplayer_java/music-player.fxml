@@ -4,23 +4,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="520.0" prefWidth="860.0" styleClass="root-pane" stylesheets="@music-player.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.MusicController_Logic">
+<BorderPane prefHeight="520.0" prefWidth="860.0" styleClass="root-pane" stylesheets="@music-player.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.andy.musicplayer_java.controllers.MusicControllerLogic">
 
     <top>
         <MenuBar styleClass="menu-bar">
             <menus>
                 <Menu mnemonicParsing="false" text="Music">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFile_OnEvent" text="Import from file" />
-                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFolder_OnEvent" text="Import from folder" />
-                        <MenuItem mnemonicParsing="false" onAction="#appPreferences_OnEvent" text="Preferences…" />
-                        <MenuItem mnemonicParsing="false" onAction="#quitApp_OnEvent" text="Quit" />
+                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFileOnEvent" text="Import from file" />
+                        <MenuItem mnemonicParsing="false" onAction="#importMusicFromFolderOnEvent" text="Import from folder" />
+                        <MenuItem mnemonicParsing="false" onAction="#appPreferencesOnEvent" text="Preferences…" />
+                        <MenuItem mnemonicParsing="false" onAction="#quitAppOnEvent" text="Quit" />
                     </items>
                 </Menu>
 
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#aboutApp_OnEvent" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#aboutAppOnEvent" text="About" />
                     </items>
                 </Menu>
             </menus>
@@ -47,8 +47,8 @@
                 <ProgressBar fx:id="songProgressBar" maxWidth="Infinity" progress="0.0" />
 
                 <HBox spacing="12.0" styleClass="button-row">
-                    <Button fx:id="PlayButton" disable="true" onAction="#playButtonClick" styleClass="primary-button" text="Play" />
-                    <Button fx:id="StopButton" disable="true" onAction="#stopButtonClick" styleClass="secondary-button" text="Stop" />
+                    <Button fx:id="playButton" disable="true" onAction="#playButtonClick" styleClass="primary-button" text="Play" />
+                    <Button fx:id="stopButton" disable="true" onAction="#stopButtonClick" styleClass="secondary-button" text="Stop" />
                     <Button fx:id="LoopButton" disable = "true" onAction="#loopButtonClick" styleClass="secondary-button" text="Loop" />
                 </HBox>
 
@@ -58,7 +58,7 @@
             <VBox spacing="14.0" styleClass="library-card" HBox.hgrow="ALWAYS">
                 <Label styleClass="section-title" text="Available Music" />
 
-                <ListView fx:id="musicListView" onMouseClicked="#senseEvent" styleClass="music-list" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                <ListView fx:id="musicCatalog" onMouseClicked="#selectedMusicFromList" styleClass="music-list" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
             </VBox>
         </HBox>
     </center>

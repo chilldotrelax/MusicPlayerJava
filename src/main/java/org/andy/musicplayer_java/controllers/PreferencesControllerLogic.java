@@ -6,7 +6,7 @@ import javafx.scene.control.CheckBox;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class PreferencesController_Logic {
+public class PreferencesControllerLogic {
     Path settingsJSON = Paths.get("src/Configuration Files/settings.json");
 
 

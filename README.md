@@ -1,18 +1,46 @@
-# Java Music Player
+# Music Player
 
-Music player built with Java and JavaFX.
+Music Player Built on Java
 
-WIP. Incomplete project, do not clone or build just yet.
+## Description
 
-### Important things to note
-#### Requirements
-1. JDK 21 or any version that is compatible with the dependencies.
-2. Maven, or perhaps utilise the inbuilt Maven wrapper.
+A music player built on Java using the JavaFX library with a custom CSS stylesheet.
 
-#### How to launch the "app" if it is finally in the released state.
-Don't build yet -- incomplete.
+## Getting Started
 
-****
-### License
-This project is licensed under the MIT license.
-See the LICENSE file for more information.
+### Dependencies
+
+* -----
+* 
+
+### Installing
+
+* ----
+* ----
+
+### Executing program
+
+* ----
+* ----
+```
+TBA
+```
+
+## Help
+
+```
+TBA
+```
+
+## Authors
+
+* chilldotrelax
+
+## Version History
+
+* 0.1A
+    * Alpha
+
+## License
+
+This project is licensed under the [MIT] License - see the LICENSE.md file for details

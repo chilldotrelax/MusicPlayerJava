@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import org.andy.musicplayer_java.popupcontrollers.AboutPopUpWindow;
 import org.andy.musicplayer_java.backgroundtasks.FileImportHandler;
@@ -19,10 +20,14 @@ import java.io.File;
 import java.util.Objects;
 
 public class MusicControllerLogic {
-    FileChooser chooseFileDialog = new FileChooser();
-    FileImportHandler selectedFile = new FileImportHandler();
-    MediaPlayerHandler playMusic = null;
-    MusicListHandler updateCurrentList = new MusicListHandler();
+    //Most fields should be private.
+    //Refactor!
+
+    private final FileChooser chooseFileDialog = new FileChooser();
+    private final FileImportHandler selectedFile = new FileImportHandler();
+    public javafx.scene.image.ImageView AlbumCover;
+    private MediaPlayerHandler playMusic = null;
+    private final MusicListHandler updateCurrentList = new MusicListHandler();
 
     @FXML
     private Button playButton;
@@ -33,14 +38,12 @@ public class MusicControllerLogic {
     @FXML
     private ListView<String> musicCatalog;
     @FXML
-
     public void initialize(){
         musicCatalog.setDisable(true);
         if (!updateCurrentList.updateList().isEmpty()){
             musicCatalog.setItems(updateCurrentList.updateList());
             musicCatalog.setDisable(false);
         }
-
     }
     @FXML
     private Parent aboutWindowPopup = null;
@@ -59,6 +62,10 @@ public class MusicControllerLogic {
                     playMusic = new MediaPlayerHandler("src/Songs/"+currentSongPlaying,songProgressBar);
                     playButton.setDisable(false);
                     nowPlayingLabel.setText(currentSongPlaying);
+                    selectedFile.saveMiscFiles("src/Songs/"+currentSongPlaying,currentSongPlaying);
+                    System.out.println(currentSongPlaying.substring(0,currentSongPlaying.length()-4));
+                    AlbumCover.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Thumbnails/" + currentSongPlaying.substring(0,currentSongPlaying.length()-4) + ".png"))));
+
                 }
                 catch (RuntimeException e){
                     playMusic = null;
@@ -67,14 +74,17 @@ public class MusicControllerLogic {
             }
             else if (!Objects.equals(nowPlayingLabel.getText(), "Nothing Playing")){
                 try{
-                    songProgressBar.setProgress(Double.MIN_VALUE);
                     playMusic.pauseSound();
                     playMusic = null;
                     playMusic = new MediaPlayerHandler("src/Songs/"+currentSongPlaying,songProgressBar);
                     playButton.setDisable(false);
                     nowPlayingLabel.setText(currentSongPlaying);
+                    selectedFile.saveMiscFiles("src/Songs/"+currentSongPlaying,currentSongPlaying);
+                    AlbumCover.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Thumbnails/" + currentSongPlaying.substring(0,currentSongPlaying.length()-4) + ".png"))));
+
                 }
                 catch (RuntimeException e){
+                    e.printStackTrace();
                     System.out.println("Empty Cell Selected");
                 }
             }
@@ -109,7 +119,7 @@ public class MusicControllerLogic {
 
         if (music_file_choice != null && music_file_choice.exists() && music_file_choice.isFile() && musicCatalog.isDisabled()){
             String path = music_file_choice.getAbsolutePath();
-            selectedFile.openFromFile(path);
+            selectedFile.openSongFromFile(path);
             musicCatalog.setDisable(false);
             musicCatalog.setItems(updateCurrentList.updateList());
         }
@@ -124,7 +134,7 @@ public class MusicControllerLogic {
         List<File> music_from_folder_choice = chooseFileDialog.showOpenMultipleDialog(owner);
 
         if (music_from_folder_choice != null && musicCatalog.isDisabled()){
-            selectedFile.openFromFolder(music_from_folder_choice);
+            selectedFile.openSongsFromFolder(music_from_folder_choice);
             musicCatalog.setDisable(false);
             musicCatalog.setItems(updateCurrentList.updateList());
         }

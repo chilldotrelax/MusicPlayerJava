@@ -16,7 +16,7 @@ public class PreferencesControllerLogic {
 
 
 
-    public void colorScheme_OnEvent(){
+    private void colorScheme_OnEvent(){
         if (appearanceButton.isSelected()){
 
         }
@@ -25,7 +25,7 @@ public class PreferencesControllerLogic {
         }
     }
 
-    public void saveLastMusic_OnEvent(){
+    private void saveLastMusic_OnEvent(){
         if (lastSongMemory.isSelected()){
 
         }
@@ -34,7 +34,7 @@ public class PreferencesControllerLogic {
         }
     }
 
-    public void convertFormat_OnEvent(){
+    private void convertFormat_OnEvent(){
         if (exp_autoFormatConversion.isSelected()){
 
         }

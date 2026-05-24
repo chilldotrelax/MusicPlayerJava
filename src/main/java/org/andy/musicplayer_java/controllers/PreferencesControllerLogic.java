@@ -7,15 +7,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PreferencesControllerLogic {
-    Path settingsJSON = Paths.get("src/Configuration Files/settings.json");
-
+    private Path settingsJSON = Paths.get("src/Configuration Files/settings.json");
 
     @FXML
     private CheckBox appearanceButton,lastSongMemory,exp_autoFormatConversion;
 
-
-
-
+    @FXML
     private void colorScheme_OnEvent(){
         if (appearanceButton.isSelected()){
 
@@ -24,7 +21,7 @@ public class PreferencesControllerLogic {
 
         }
     }
-
+    @FXML
     private void saveLastMusic_OnEvent(){
         if (lastSongMemory.isSelected()){
 
@@ -33,7 +30,7 @@ public class PreferencesControllerLogic {
 
         }
     }
-
+    @FXML
     private void convertFormat_OnEvent(){
         if (exp_autoFormatConversion.isSelected()){
 
